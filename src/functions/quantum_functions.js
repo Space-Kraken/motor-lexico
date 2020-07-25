@@ -27,15 +27,26 @@ const numbers = /[^0-9]/;
 function test() {
   return "hi from quantum functions";
 }
-
+function blank_space_reducer(code) {
+  let bol = true;
+  let find = false;
+  while (bol) {
+    if (code.charAt(values.index) === " ") {
+      console.log("err");
+      find = true;
+      values.index += 1;
+    } else {
+      console.log(typeof code.charAt(values.index));
+      find ? (values.output += codigos[34].num + " ") : (find = false);
+      bol = false;
+    }
+  }
+  return find;
+}
+function dellSkipLines(code) {}
 function q0(code) {
   console.log(values.size + "/" + values.index);
   if (values.size > values.index) {
-    if (code.charAt(values.index) === "") {
-      //especial
-      values.output += codigos[34].num + " ";
-      values.index += 1;
-    }
     if (keyWords.indexOf(code.charAt(values.index)) === -1) {
       q1(code);
     } else {
@@ -70,13 +81,22 @@ function q1(code) {
   let boolean = true;
   let numero, letra;
   while (boolean) {
-    numero = !code.charAt(values.index).match(numbers);
-    letra = !code.charAt(values.index).match(letters);
+    try {
+      numero = !code.charAt(values.index).match(numbers);
+      letra = !code.charAt(values.index).match(letters);
+    } catch (error) {
+      values.index += 1;
+      continue;
+    }
     if (values.size > values.index) {
       if (letra || numero) {
-        values.index++;
+        values.index += 1;
       } else {
+        blank_space_reducer(code)
+          ? console.log("nothing")
+          : (values.output += (values.ident += 1) + " ");
         boolean = false;
+
         q2(code);
       }
     } else {
@@ -91,24 +111,24 @@ function q2(code) {
   switch (code.charAt(values.index)) {
     case "+":
       //especial
-      values.output += (values.ident += 1) + " " + codigos[11].num + " ";
+      values.output += codigos[11].num + " ";
       break;
     case "/":
-      values.output += (values.ident += 1) + " " + codigos[12].num + " ";
+      values.output += codigos[12].num + " ";
       break;
     case "%":
-      values.output += (values.ident += 1) + " " + codigos[13].num + " ";
+      values.output += codigos[13].num + " ";
       break;
     case "*":
-      values.output += (values.ident += 1) + " " + codigos[14].num + " ";
+      values.output += codigos[14].num + " ";
       break;
     case "-":
       //especial
-      values.output += (values.ident += 1) + " " + codigos[15].num + " ";
+      values.output += codigos[15].num + " ";
       break;
     case "=":
       //especial
-      values.output += (values.ident += 1) + " " + codigos[16].num + " ";
+      values.output += codigos[16].num + " ";
       break;
     default:
       q3(code);
@@ -122,16 +142,17 @@ function q3(code) {
   switch (code.charAt(values.index)) {
     case ".":
       //especial
-      values.output += (values.ident += 1) + " " + codigos[25].num + " ";
+      values.output += codigos[25].num + " ";
       break;
     case ",":
       //especial
-      values.output += (values.ident += 1) + " " + codigos[26].num + " ";
+      values.output += codigos[26].num + " ";
       break;
     case ";":
       //especial
-      values.output += (values.ident += 1) + " " + codigos[33].num + " ";
+      values.output += codigos[33].num + " ";
       break;
+
     default:
       // values.output += codigos[34].num + " ";
       q0(code);
@@ -139,6 +160,8 @@ function q3(code) {
       break;
   }
   values.index += 1;
+  blank_space_reducer(code);
+
   q0(code);
 }
 
