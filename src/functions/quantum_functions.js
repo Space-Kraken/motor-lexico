@@ -142,6 +142,83 @@ function q3(code) {
   q0(code);
 }
 
+function q4(code) {
+  switch (code.charAt(values.index)) {
+    case "(":
+      values.output += (values.ident += 1) + " " + codigos[28].num + " ";
+      break;
+    case ")":
+      values.output += (values.ident += 1) + " " + codigos[29].num + " ";
+      break;
+    case "{":
+      values.output += (values.ident += 1) + " " + codigos[30].num + " ";
+      break;
+    case "{":
+      values.output += (values.ident += 1) + " " + codigos[31].num + " ";
+      break;
+    case "}":
+      values.output += (values.ident += 1) + " " + codigos[32].num + " ";
+      break; 
+    case "[":
+      values.output += (values.ident += 1) + " " + codigos[33].num + " ";
+        break;
+    case "]":
+      values.output += (values.ident += 1) + " " + codigos[34].num + " ";
+          break;
+    default:
+      q0(code);
+      break;
+  }
+  values.index += 1;
+  q0(code);
+}
+
+function q5(code) {
+  switch (code.charAt(values.index)) {
+    case "function":
+      values.output += (values.ident += 1) + " " + codigos[1].num + " ";
+      break;
+    case "this":
+      values.output += (values.ident += 1) + " " + codigos[2].num + " ";
+      break;
+    case "if":
+      values.output += (values.ident += 1) + " " + codigos[3].num + " ";
+      break;
+    case "else":
+      values.output += (values.ident += 1) + " " + codigos[4].num + " ";
+      break;
+    case "console":
+      values.output += (values.ident += 1) + " " + codigos[5].num + " ";
+      break; 
+    case "info":
+      values.output += (values.ident += 1) + " " + codigos[6].num + " ";
+      break;
+    case "error":
+      values.output += (values.ident += 1) + " " + codigos[7].num + " ";
+      break;
+    case "log":
+      values.output += (values.ident += 1) + " " + codigos[8].num + " ";
+      break;
+    case "var":
+      values.output += (values.ident += 1) + " " + codigos[9].num + " ";
+      break;
+    case "let":
+      values.output += (values.ident += 1) + " " + codigos[10].num + " ";
+      break;
+    case "const":
+        values.output += (values.ident += 1) + " " + codigos[11].num + " ";
+      break;
+
+    default:
+      q0(code);
+      break;
+  }
+  values.index += 1;
+  q0(code);
+}
+
+
+
 // // //? Automata de identificadores
 // function q1(code) {
 //   //? Variable temporal de retorno
