@@ -165,6 +165,7 @@ function q3(code) {
   q0(code);
 }
 
+//Signos de agrupacion by Cris
 function q4(code) {
   switch (code.charAt(values.index)) {
     case "(":
@@ -196,6 +197,7 @@ function q4(code) {
   q0(code);
 }
 
+//palabras reservadas by Cris
 function q5(code) {
   switch (code.charAt(values.index)) {
     case "function":
@@ -231,7 +233,6 @@ function q5(code) {
     case "const":
         values.output += (values.ident += 1) + " " + codigos[11].num + " ";
       break;
-
     default:
       q0(code);
       break;
@@ -240,6 +241,78 @@ function q5(code) {
   q0(code);
 }
 
+//Operadores aritmeticos by Cris
+function q6(code) {
+  switch (code.charAt(values.index)) {
+    case "+":
+      values.output += (values.ident += 1) + " " + codigos[12].num + " ";
+      break;
+    case "/":
+      values.output += (values.ident += 1) + " " + codigos[13].num + " ";
+      break;
+    case "%":
+      values.output += (values.ident += 1) + " " + codigos[14].num + " ";
+      break;
+    case "*":
+      values.output += (values.ident += 1) + " " + codigos[15].num + " ";
+      break;
+    case "-":
+      values.output += (values.ident += 1) + " " + codigos[16].num + " ";
+      break; 
+    case "=":
+      values.output += (values.ident += 1) + " " + codigos[17].num + " ";
+        break;
+    default:
+      q0(code);
+      break;
+  }
+  values.index += 1;
+  q0(code);
+}
+//Operadores relacionales by Cris
+function q7(code) {
+  switch (code.charAt(values.index)) {
+    case "==":
+      values.output += (values.ident += 1) + " " + codigos[18].num + " ";
+      break;
+    case "<":
+      values.output += (values.ident += 1) + " " + codigos[19].num + " ";
+      break;
+    case ">":
+      values.output += (values.ident += 1) + " " + codigos[20].num + " ";
+      break;
+    case "<=":
+      values.output += (values.ident += 1) + " " + codigos[21].num + " ";
+      break;
+    case ">=":
+      values.output += (values.ident += 1) + " " + codigos[22].num + " ";
+      break; 
+    default:
+      q0(code);
+      break;
+  }
+  values.index += 1;
+  q0(code);
+}
+//Operadores Logicos by Cris
+function q8(code) {
+  switch (code.charAt(values.index)) {
+    case "||":
+      values.output += (values.ident += 1) + " " + codigos[23].num + " ";
+      break;
+    case "&&":
+      values.output += (values.ident += 1) + " " + codigos[24].num + " ";
+      break;
+    case "!":
+      values.output += (values.ident += 1) + " " + codigos[25].num + " ";
+      break;
+    default:
+      q0(code);
+      break;
+  }
+  values.index += 1;
+  q0(code);
+}
 
 
 // // //? Automata de identificadores
