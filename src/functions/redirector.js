@@ -10,9 +10,11 @@ let encoded = "";
 const letras = /[^A-z]/;
 
 function Main(code) {
+  code = code.replace(/(\r\n|\n|\r)/gm, "");
   values["ident"] = 5999;
   values["size"] = code.length;
   values["index"] = 0;
+  values["asings"] = 6999;
   values["output"] = "";
   if (
     code.charAt(0).match(letras) === null ||
