@@ -1,4 +1,4 @@
-import { ident, q0 } from "./quantum_functions";
+import { values } from "./quantum_functions";
 
 //* Export de la Funcion/Estaddo inicial
 export { Main };
@@ -10,12 +10,17 @@ let encoded = "";
 const letras = /[^A-z]/;
 
 function Main(code) {
-  ident = 5999;
-  if (code.charAt(0).match(letras) === null || code.charAt(0) === "/") {
-    encoded = q0(code, code.length, 0);
-    // console.log(code.length);
+  values["ident"] = 5999;
+  values["size"] = code.length;
+  values["index"] = 0;
+  values["output"] = "";
+  if (
+    code.charAt(0).match(letras) === null ||
+    (code.charAt(0) === "/" && code.charAt(1) === "/")
+  ) {
+    encoded = values.function(code, code.length, 0);
     return encoded;
   } else {
-    return 'Error 0x01: invalid element: "' + code.charAt(0) + '"';
+    return values.errors(0, code.charAt(0));
   }
 }
