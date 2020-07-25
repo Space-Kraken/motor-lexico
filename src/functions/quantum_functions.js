@@ -32,7 +32,6 @@ function blank_space_reducer(code) {
   let find = false;
   while (bol) {
     if (code.charAt(values.index) === " ") {
-      console.log("err");
       find = true;
       values.index += 1;
     } else {
@@ -50,7 +49,7 @@ function q0(code) {
     if (keyWords.indexOf(code.charAt(values.index)) === -1) {
       q1(code);
     } else {
-      values.output = "test a";
+      values.output += "test a";
     }
     // switch (keyWords.indexOf(code.charAt(values.index))) {
     //   case -1:
@@ -81,19 +80,14 @@ function q1(code) {
   let boolean = true;
   let numero, letra;
   while (boolean) {
-    try {
-      numero = !code.charAt(values.index).match(numbers);
-      letra = !code.charAt(values.index).match(letters);
-    } catch (error) {
-      values.index += 1;
-      continue;
-    }
+    numero = !code.charAt(values.index).match(numbers);
+    letra = !code.charAt(values.index).match(letters);
     if (values.size > values.index) {
       if (letra || numero) {
         values.index += 1;
       } else {
         blank_space_reducer(code)
-          ? console.log("nothing")
+          ? q0(code)
           : (values.output += (values.ident += 1) + " ");
         boolean = false;
 
@@ -111,24 +105,30 @@ function q2(code) {
   switch (code.charAt(values.index)) {
     case "+":
       //especial
-      values.output += codigos[11].num + " ";
+      values.output +=
+        codigos[34].num + " " + codigos[11].num + " " + codigos[34].num + " ";
       break;
     case "/":
-      values.output += codigos[12].num + " ";
+      values.output +=
+        codigos[34].num + " " + codigos[12].num + " " + codigos[34].num + " ";
       break;
     case "%":
-      values.output += codigos[13].num + " ";
+      values.output +=
+        codigos[34].num + " " + codigos[13].num + " " + codigos[34].num + " ";
       break;
     case "*":
-      values.output += codigos[14].num + " ";
+      values.output +=
+        codigos[34].num + " " + codigos[14].num + " " + codigos[34].num + " ";
       break;
     case "-":
       //especial
-      values.output += codigos[15].num + " ";
+      values.output +=
+        codigos[34].num + " " + codigos[15].num + " " + codigos[34].num + " ";
       break;
     case "=":
       //especial
-      values.output += codigos[16].num + " ";
+      values.output +=
+        codigos[34].num + " " + codigos[16].num + " " + codigos[34].num + " ";
       break;
     default:
       q3(code);
@@ -142,15 +142,17 @@ function q3(code) {
   switch (code.charAt(values.index)) {
     case ".":
       //especial
-      values.output += codigos[25].num + " ";
+      values.output +=
+        codigos[34].num + " " + codigos[25].num + " " + codigos[34].num + " ";
       break;
     case ",":
       //especial
-      values.output += codigos[26].num + " ";
+      values.output +=
+        codigos[34].num + " " + codigos[26].num + " " + codigos[34].num + " ";
       break;
     case ";":
       //especial
-      values.output += codigos[33].num + " ";
+      values.output += " " + codigos[33].num + " ";
       break;
 
     default:
