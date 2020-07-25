@@ -1,4 +1,5 @@
 import { values } from "./quantum_functions";
+import { final } from "./replace";
 
 //* Export de la Funcion/Estaddo inicial
 export { Main };
@@ -10,7 +11,7 @@ let encoded = "";
 const letras = /[^A-z]/;
 
 function Main(code) {
-  code = code.replace(/(\r\n|\n|\r| )/gm, "");
+  // code = code.replace(/(\r\n|\n|\r|"")/gm, " ");
   code = code.trim();
   values["ident"] = 5999;
   values["size"] = code.length;
@@ -21,7 +22,7 @@ function Main(code) {
     code.charAt(0).match(letras) === null ||
     (code.charAt(0) === "/" && code.charAt(1) === "/")
   ) {
-    encoded = values.function(code, code.length, 0);
+    encoded = final(code);
     return encoded;
   } else {
     return values.errors(0, code.charAt(0));

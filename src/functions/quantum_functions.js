@@ -49,7 +49,8 @@ function q0(code) {
     if (keyWords.indexOf(code.charAt(values.index)) === -1) {
       q1(code);
     } else {
-      values.output += "test a";
+      mkWord(code);
+      // values.output += "test a";
     }
     // switch (keyWords.indexOf(code.charAt(values.index))) {
     //   case -1:
@@ -95,7 +96,8 @@ function q1(code) {
       }
     } else {
       boolean = false;
-      error_manager(1, 0);
+      q2(code);
+      // error_manager(1, 0);
     }
   }
   values.index += 1;
@@ -157,7 +159,7 @@ function q3(code) {
 
     default:
       // values.output += codigos[34].num + " ";
-      q0(code);
+      q4(code);
       // values.index += 1;
       break;
   }
@@ -179,18 +181,15 @@ function q4(code) {
     case "{":
       values.output += (values.ident += 1) + " " + codigos[30].num + " ";
       break;
-    case "{":
-      values.output += (values.ident += 1) + " " + codigos[31].num + " ";
-      break;
     case "}":
       values.output += (values.ident += 1) + " " + codigos[32].num + " ";
-      break; 
+      break;
     case "[":
       values.output += (values.ident += 1) + " " + codigos[33].num + " ";
-        break;
+      break;
     case "]":
       values.output += (values.ident += 1) + " " + codigos[34].num + " ";
-          break;
+      break;
     default:
       q0(code);
       break;
@@ -199,47 +198,115 @@ function q4(code) {
   q0(code);
 }
 
-//palabras reservadas by Cris
-function q5(code) {
+function mkWord(code) {
+  let i;
   switch (code.charAt(values.index)) {
-    case "function":
-      values.output += (values.ident += 1) + " " + codigos[1].num + " ";
+    case "f":
+      i = values.index + 8;
       break;
-    case "this":
-      values.output += (values.ident += 1) + " " + codigos[2].num + " ";
+    case "t":
+      i = values.index + 4;
       break;
-    case "if":
-      values.output += (values.ident += 1) + " " + codigos[3].num + " ";
+    case "v":
+      i = values.index + 3;
       break;
-    case "else":
-      values.output += (values.ident += 1) + " " + codigos[4].num + " ";
+    case "i":
+      if (code.charAt(values.index + 1) === "f") {
+        i = values.index + 2;
+      } else {
+        i = values.index + 4;
+      }
       break;
-    case "console":
-      values.output += (values.ident += 1) + " " + codigos[5].num + " ";
-      break; 
-    case "info":
-      values.output += (values.ident += 1) + " " + codigos[6].num + " ";
+    case "e":
+      if (code.charAt(values.index + 1) === "l") {
+        i = values.index + 4;
+      } else {
+        i = values.index + 5;
+      }
       break;
-    case "error":
-      values.output += (values.ident += 1) + " " + codigos[7].num + " ";
+    case "c":
+      if (code.charAt(values.index + 4) === "o") {
+        i = values.index + 7;
+      } else {
+        i = values.index + 5;
+      }
       break;
-    case "log":
-      values.output += (values.ident += 1) + " " + codigos[8].num + " ";
-      break;
-    case "var":
-      values.output += (values.ident += 1) + " " + codigos[9].num + " ";
-      break;
-    case "let":
-      values.output += (values.ident += 1) + " " + codigos[10].num + " ";
-      break;
-    case "const":
-        values.output += (values.ident += 1) + " " + codigos[11].num + " ";
+    case "l":
+      i = values.index + 3;
       break;
     default:
-      q0(code);
+      q1(code);
+  }
+  let newCode = "";
+  try {
+    if (!code.charAt(i + 1).match(/[^A-z]/)) {
+      newCode = code.substring(values.index, i);
+      q5(newCode);
+    } else {
+      console.log("not working");
+      q1(code);
+    }
+  } catch (error) {
+    console.info(error);
+  }
+  // for (let i = values.index + 8; i > values.index; i--) {
+  // }
+}
+//palabras reservadas by Cris
+function q5(code) {
+  let index;
+  switch (code) {
+    case "function":
+      values.output += " " + codigos[1].num + " " + codigos[34].num + " ";
+      index = 8;
+      break;
+    case "this":
+      values.output += " " + codigos[2].num + " ";
+      index = 4;
+      break;
+    case "if":
+      values.output += " " + codigos[3].num + " ";
+      index = 2;
+      break;
+    case "else":
+      values.output += " " + codigos[4].num + " ";
+      index = 4;
+      break;
+    case "console":
+      values.output += " " + codigos[5].num + " ";
+      index = 7;
+      break;
+    case "info":
+      index = 4;
+      values.output += " " + codigos[6].num + " ";
+      break;
+    case "error":
+      index = 5;
+      values.output += " " + codigos[7].num + " ";
+      break;
+    case "log":
+      index = 3;
+      values.output += " " + codigos[8].num + " ";
+      break;
+    case "var":
+      index = 3;
+      values.output += " " + codigos[9].num + " ";
+      break;
+    case "let":
+      index = 3;
+      values.output += " " + codigos[10].num + " ";
+      break;
+    case "const":
+      index = 5;
+      values.output += " " + codigos[11].num + " ";
+      break;
+    default:
+      q1(code);
       break;
   }
-  values.index += 1;
+  values.index += index + 1;
+  blank_space_reducer(code);
+  console.log(values.index + "valiu: " + code.charAt(values.index));
   q0(code);
 }
 
@@ -260,10 +327,10 @@ function q6(code) {
       break;
     case "-":
       values.output += (values.ident += 1) + " " + codigos[16].num + " ";
-      break; 
+      break;
     case "=":
       values.output += (values.ident += 1) + " " + codigos[17].num + " ";
-        break;
+      break;
     default:
       q0(code);
       break;
@@ -288,7 +355,7 @@ function q7(code) {
       break;
     case ">=":
       values.output += (values.ident += 1) + " " + codigos[22].num + " ";
-      break; 
+      break;
     default:
       q0(code);
       break;
@@ -315,7 +382,6 @@ function q8(code) {
   values.index += 1;
   q0(code);
 }
-
 
 // // //? Automata de identificadores
 // function q1(code) {
