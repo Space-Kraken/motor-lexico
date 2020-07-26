@@ -1,12 +1,26 @@
-export { codigos };
+export { codigos, regKW };
+
+const regKW = [
+  { id: 1, exp: /(f(u(n(c(t(i(o(n(\s)+)+)+)+)+)+)+)+)/ },
+  { id: 2, exp: /(t(h(i(s(\s)+)+)+)+)+/ },
+  { id: 3, exp: /(i(f(\s)+)+)+/ },
+  { id: 4, exp: /(e(l(s(e)+)+)+)+/ },
+  { id: 5, exp: /(c(o(n(s(o(l(e)+)+)+)+)+)+)+/ },
+  { id: 6, exp: /(i(n(f(o(\s)+)+)+)+)+/ },
+  { id: 7, exp: /(e(r(r(o(r(\s)+)+)+)+)+)+/ },
+  { id: 8, exp: /(l(o(g(\s)+)+)+)+/ },
+  { id: 9, exp: /(v(a(r(\s)+)+)+)+/ },
+  { id: 10, exp: /(l(e(t)+)+)+/ },
+  { id: 11, exp: /(c(o(n(s(t(\s)+)+)+)+)+)+/ },
+];
 
 const codigos = [
   //palabras reservadas
-  { id: 1, num: "1005 ", valor: "function" }, //listo_cris
+  { id: 1, num: "1005", valor: "function" }, //listo_cris
   { id: 2, num: "1010 ", valor: "this" }, //listo_cris
   { id: 3, num: "1015 ", valor: "if" }, //listo_cris
   { id: 4, num: "1020 ", valor: "else" }, //listo_cris
-  { id: 5, num: "1025 ", valor: "console" }, //listo_cris
+  { id: 5, num: "1025", valor: "console" }, //listo_cris
   { id: 6, num: "1030 ", valor: "info" }, //listo_cris
   { id: 7, num: "1035 ", valor: "error" }, //listo_cris
   { id: 8, num: "1040 ", valor: "log" }, //listo_cris
@@ -19,17 +33,17 @@ const codigos = [
   { id: 14, num: "2015 ", valor: "%" }, //listo_cris
   { id: 15, num: "2020 ", valor: "*" }, //listo_cris
   { id: 16, num: "2025 ", valor: "-" }, //listo_cris
-  { id: 17, num: "2030 ", valor: "=" }, //listo_cris
+  { id: 17, num: "2070 ", valor: "!" }, //listo_cris
   //Operadores relacionales
   { id: 18, num: "2035 ", valor: "==" }, //listo_cris
-  { id: 19, num: "2040 ", valor: "<" }, //listo_cris
-  { id: 20, num: "2045 ", valor: ">" }, //listo_cris
-  { id: 21, num: "2050 ", valor: "<=" }, //listo_cris
-  { id: 22, num: "2055 ", valor: ">=" }, //listo_cris
+  { id: 19, num: "2050 ", valor: "<=" }, //listo_cris
+  { id: 20, num: "2055 ", valor: ">=" }, //listo_cris
+  { id: 21, num: "2040 ", valor: "<" }, //listo_cris
+  { id: 22, num: "2045 ", valor: ">" }, //listo_cris
   //Operadores logicos
   { id: 23, num: "2060 ", valor: "||" }, //listo_cris
   { id: 24, num: "2065 ", valor: "&&" }, //listo_cris
-  { id: 25, num: "2070 ", valor: "!" }, //listo_cris
+  { id: 25, num: "2030 ", valor: "=" }, //listo_cris
   //Signos de puntuacion
   { id: 26, num: "3005 ", valor: "." },
   { id: 27, num: "3010 ", valor: "," }, //listo

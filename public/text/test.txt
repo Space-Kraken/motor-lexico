@@ -1,3 +1,10 @@
-public static void main(String [] args){
-    //Some code lines....
+let numero = 10;
+
+function test(val) {
+  if (val > 0) {
+    numero = numero / val;
+  } else {
+    numero = numero + val;
+  }
 }
+test(5);
