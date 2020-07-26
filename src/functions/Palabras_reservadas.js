@@ -1,6 +1,7 @@
 export { codigos, regKW };
 
 const regKW = [
+  //Expresiones regulares
   { id: 1, exp: /(f(u(n(c(t(i(o(n(\s)+)+)+)+)+)+)+)+)/ },
   { id: 2, exp: /(t(h(i(s(\s)+)+)+)+)+/ },
   { id: 3, exp: /(i(f(\s)+)+)+/ },
